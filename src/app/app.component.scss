@@ -1,0 +1,24 @@
+#main-block {
+    padding: 2.5rem 2.5rem 5rem;
+
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#footer {
+    height: 2.5rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#header-logo {
+    transition: transform 0.8s ease-in-out;
+
+    &:hover {
+        transform: rotate(360deg);
+    }
+}
