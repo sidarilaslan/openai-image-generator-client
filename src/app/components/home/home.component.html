@@ -1,11 +1,17 @@
 <div class="container">
     <div class="input-group mb-3 py-5">
-        <input type="text" class="form-control" placeholder="Write whatever you want me to draw"
+        <input type="text" class="form-control" placeholder="Write whatever you want me to draw" #txtPrompt
             aria-label="Write whatever you want me to draw" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+            (click)=" generateImage(txtPrompt)">Search</button>
     </div>
-
-    <div class="image-wrap">
-
+    <div class="image-container" #imageContainer>
+        <div class="btn-group " id="button-group" role="group" aria-label="Basic outlined example"
+            *ngIf="!btnGroupHidden">
+            <button type="button" class="btn btn-outline-secondary"><i class="bi bi-cloud-upload"></i></button>
+            <button type="button" class="btn btn-outline-secondary"><i class="bi bi-share"></i></button>
+            <button type="button" class="btn btn-outline-secondary"> <i class="bi bi-download"></i>
+            </button>
+        </div>
     </div>
 </div>
