@@ -1,6 +1,7 @@
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ImageSize, OpenaiImageService } from './../../services/models/openai-image.service';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/services/custom-toastr.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent {
   btnGroupHidden: boolean = true;
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLInputElement>;
 
-  constructor(private openaiImageService: OpenaiImageService, private ngxSpinnerService: NgxSpinnerService, private renderer: Renderer2) {
+  constructor(private openaiImageService: OpenaiImageService, private ngxSpinnerService: NgxSpinnerService, private renderer: Renderer2, private customToastrService: CustomToastrService) {
   }
 
 
@@ -26,9 +27,8 @@ export class HomeComponent {
 
       this.ngxSpinnerService.hide();
     }, (errorMessage: string) => {
-      console.log(errorMessage); //!todo alertify
+      this.customToastrService.message(errorMessage, "Error", { messageType: ToastrMessageType.Error, position: ToastrPosition.BottomRight });
       this.ngxSpinnerService.hide();
-
     });
     //!todo need refactor
     this.imgElement = this.btnGroupHidden ? this.renderer.createElement("img") : document.querySelector(".genereted-image");
@@ -38,6 +38,7 @@ export class HomeComponent {
     txtPrompt.value = null;
     this.btnGroupHidden = false;
     //
+
   }
 
 
